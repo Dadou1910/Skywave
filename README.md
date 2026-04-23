@@ -42,13 +42,15 @@ Python 3.11 · PyQt6 · pyqtgraph · SQLite · NumPy
 ## Project structure
 
 ```
-app/
 ├── main.py
+├── requirements.txt
+├── run_linux.sh
+├── run_win.bat
 ├── backend/
 │   ├── engine.py        # signal processing, metric scoring, session lifecycle
 │   ├── database.py      # SQLite schema and queries
 │   ├── normaliser.py    # per-user rolling normalisation (min/max with decay)
-│   ├── sound.py         # sine-wave tone generation via QSoundEffect
+│   ├── sound.py         # sine-wave tone generation, no audio files needed
 │   └── sources/
 │       ├── base.py          # DataSource interface
 │       └── mock_source.py   # simulated EEG with correlated band walks
@@ -56,6 +58,7 @@ app/
     ├── main_window.py
     ├── styles.py
     ├── utils.py
+    ├── user_dialog.py
     ├── screens/
     │   ├── monitor_screen.py
     │   ├── training_screen.py
