@@ -1,0 +1,21 @@
+services:
+  skywave:
+    build: .
+    image: skywave
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PULSE_SERVER=unix:/run/user/1000/pulse/native
+      - PULSE_COOKIE=/root/.config/pulse/cookie
+    volumes:
+      # X11 display socket
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # PulseAudio socket + auth cookie
+      - /run/user/1000/pulse/native:/run/user/1000/pulse/native
+      - ${HOME}/.config/pulse/cookie:/root/.config/pulse/cookie:ro
+      # Persistent session data (saved between runs)
+      - skywave_data:/root/skywave_data
+    network_mode: host
+    restart: "no"
+
+volumes:
+  skywave_data:
